@@ -23,7 +23,7 @@
                 <div class="row mb-3">
                     <div class="col-3">
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        <button type="button" class="btn btn-primary" @click.prevent="add">
                             Add New
                         </button>
                     </div>
@@ -34,7 +34,7 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">{{ modalTitle }}</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -61,7 +61,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button class="btn btn-primary" @click.prevent="save">Save changes</button>
+                                    <button class="btn btn-primary" @click.prevent="saveOrUpdate">{{ modalTextButton }}</button>
                                 </div>
                             </div>
                         </div>
@@ -91,6 +91,7 @@
                             <th @click="sort('name')" :class="classes('name')">Product Name</th>
                             <th @click="sort('category')" :class="classes('category')">Category</th>
                             <th @click="sort('price')" :class="classes('price')">Price</th>
+                            <th width="100">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -98,6 +99,11 @@
                             <td>{{ product.name }}</td>
                             <td>{{ product.category }}</td>
                             <td>{{ product.price }}</td>
+                            <td>
+                                <a href="" class="btn btn-sm btn-outline-secondary" @click.prevent="edit(product)">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
